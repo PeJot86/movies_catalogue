@@ -11,11 +11,13 @@
 
 </div>
     <div class="col-lg-12 mb-4">
-    {% for movie_type, description in movies_type.items() %}
-    <a href="{{ url_for('homepage', list_type=movie_type) }}" class="btn btn-outline-info" role="button" aria-pressed="false">{{ description }}</a>
-    {% if movie_type == current_type %}
-    <a href="" class="btn btn-outline-info" role="button" aria-pressed="true">{{ description }}</a>
-    {% endif %}
+        {% for movie_type, description in movies_type.items() %}
+        <a href="{{ url_for('homepage', list_type=movie_type) }}"
+            class="btn btn-outline-info {{ 'active' if movie_type == current_list else '' }}"
+            role="button"
+            aria-pressed="false">
+            {{ description }}
+        </a>
     {% endfor %}
     </div>  
    {% for movie in movies %}
