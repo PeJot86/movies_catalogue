@@ -4,7 +4,6 @@ from main import app
 import pytest
 
 
-
 def test_get_single_movie(monkeypatch):
    mock_movies = ["Movie"]
    requests_mock = Mock()       
@@ -55,7 +54,7 @@ def test_homepage(monkeypatch, list_type):
    monkeypatch.setattr("tmdb_client.call_tmdb_api", api_mock)
 
    with app.test_client() as client:
-       response = client.get("/?list_type={list_type}")
+       response = client.get(f"/?list_type={list_type}")
        assert response.status_code == 200
-       api_mock.assert_called_once_with({list_type})
+       api_mock.assert_called_once_with(f"movie/{list_type}")
 
