@@ -14,9 +14,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    selected_list = request.args.get('list_type', "popular")
+    selected_list = request.args.get('list_type',"popular")
     movies = tmdb_client.get_movies(how_many=8, type_list=selected_list)
     return render_template("homepage.html", movies=movies, current_list=selected_list, movies_type=movies_type)
+
 
 
 @app.context_processor

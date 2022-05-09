@@ -4,6 +4,16 @@ import random
 API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MWQyMWEyMTYxOGY4YTZjYzQ4YTg0OTc0OTBmMzM1MCIsInN1YiI6IjYyNGQ1NThmNGNiZTEyMDA2NWI5ZGQxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gKlIXnw03n5gXXr_KkkVoKUCzgT-iR-tJsE0JQhoavw" 
 
 
+def call_tmdb_api(endpoint):
+   full_url = f"https://api.themoviedb.org/3/{endpoint}"
+   headers = {
+       "Authorization": f"Bearer {API_TOKEN}"
+   }
+   response = requests.get(full_url, headers=headers)
+   response.raise_for_status()
+   return response.json()
+
+
 def get_movies_list(list_type):
     endpoint = f"https://api.themoviedb.org/3/movie/{list_type}"
     headers = {
@@ -11,7 +21,7 @@ def get_movies_list(list_type):
     }
     response = requests.get(endpoint, headers=headers)
     response.raise_for_status()
-    return response.json()
+    return call_tmdb_api(f"movie/{list_type}")
 
 
 def get_poster_url(poster_api_path, size="w342"):
