@@ -1,8 +1,9 @@
 import requests
 import random
+import os
+ 
 
-API_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MWQyMWEyMTYxOGY4YTZjYzQ4YTg0OTc0OTBmMzM1MCIsInN1YiI6IjYyNGQ1NThmNGNiZTEyMDA2NWI5ZGQxOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gKlIXnw03n5gXXr_KkkVoKUCzgT-iR-tJsE0JQhoavw" 
-
+API_TOKEN = os.environ.get("TMDB_API_TOKEN", "")
 
 def call_tmdb_api(endpoint):
    full_url = f"https://api.themoviedb.org/3/{endpoint}"
